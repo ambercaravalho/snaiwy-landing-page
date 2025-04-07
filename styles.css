@@ -32,6 +32,8 @@
     --card-bg: var(--tmobile-white);
     --card-border: var(--tmobile-gray);
     --link-color: var(--tmobile-dark-magenta); /* Added for better link contrast */
+    --active-nav-bg: #f0f0f0;      /* Light background for active navigation items */
+    --active-nav-border: var(--tmobile-magenta); /* T-Mobile magenta for active navigation border */
 }
 
 /* Dark theme variables with improved contrast */
@@ -45,6 +47,8 @@ html[data-theme='dark'] {
     --section-bg: #1a1a1a;
     --card-bg: #2a2a2a;
     --card-shadow: rgba(0, 0, 0, 0.3);
+    --active-nav-bg: #333333;      /* Dark background for active navigation items */
+    --active-nav-border: #ff79b0;  /* Accent color for active navigation border */
 }
 
 /* Dark mode with improved contrast */
@@ -59,6 +63,8 @@ html[data-theme='dark'] {
     --card-bg: #1E1E1E;           /* Slightly lighter than background for distinction */
     --card-border: #555555;       /* Lighter border for better visibility */
     --link-color: #FF8DC1;        /* Lighter link color for dark backgrounds */
+    --active-nav-bg: #333333;      /* Dark background for active navigation items */
+    --active-nav-border: #FF5CAF;  /* Accent color for active navigation border */
 }
 
 /* System preference detection - as fallback */
@@ -73,6 +79,8 @@ html[data-theme='dark'] {
         --section-bg: #1a1a1a;
         --card-bg: #2a2a2a;
         --card-shadow: rgba(0, 0, 0, 0.3);
+        --active-nav-bg: #333333;
+        --active-nav-border: #ff79b0;
     }
 }
 
@@ -86,30 +94,32 @@ body {
     transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
+/* Restore original header styling */
 header {
     position: sticky;
     top: 0;
     z-index: 1000;
     background: var(--header-bg);
+    color: var(--header-text);
     padding: 1rem 2rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     box-shadow: 0 2px 5px var(--card-shadow);
     transition: background var(--transition-speed);
 }
 
 nav {
-    display: flex;
-    align-items: center;
+    margin-left: auto;
 }
 
 nav ul {
-    display: flex;
-    gap: 2rem;
-    margin: 0;
-    padding: 0;
     list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 nav ul li {
@@ -119,35 +129,33 @@ nav ul li {
 nav ul li a {
     color: var(--text-color);
     text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s;
-    padding: 0.5rem 0;
+    font-weight: bold;
+    transition: color var(--transition-speed), background-color var(--transition-speed), border-bottom var(--transition-speed);
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
     position: relative;
-}
-
-nav ul li a:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--primary-color);
-    transition: width 0.3s ease;
-}
-
-nav ul li a:hover:after {
-    width: 100%;
 }
 
 nav ul li a:hover {
     color: var(--primary-color);
 }
 
+/* Active navigation styling */
 nav ul li a.active {
-    color: var(--accent-color);
-    border-bottom: 2px solid var(--accent-color);
-    padding-bottom: 3px;
+    color: var(--primary-color);
+    background-color: var(--active-nav-bg);
+    border-bottom: 2px solid var(--active-nav-border);
+}
+
+nav ul li a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--active-nav-border);
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .theme-toggle {
@@ -155,8 +163,7 @@ nav ul li a.active {
     border: none;
     cursor: pointer;
     font-size: 1.5rem;
-    margin-right: 0;
-    margin-left: auto;
+    margin-right: 1rem;
     padding: 0.5rem;
     border-radius: 50%;
     background-color: var(--background-color);
@@ -524,14 +531,14 @@ footer {
     }
     
     .theme-toggle {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
+        align-self: flex-end;
+        margin-right: 0;
+        margin-bottom: 0.5rem;
     }
     
     nav {
-        margin-top: 1rem;
         width: 100%;
+        margin-left: 0;
     }
     
     nav ul {
