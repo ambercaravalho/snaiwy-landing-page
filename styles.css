@@ -10,19 +10,55 @@
     --card-bg: #ffffff;
     --card-shadow: rgba(0, 0, 0, 0.1);
     --transition-speed: 0.3s;
+
+    /* T-Mobile color palette with improved contrast */
+    --tmobile-magenta: #E20074;
+    --tmobile-dark-magenta: #990F5E;
+    --tmobile-light-magenta: #FF38A8;
+    --tmobile-black: #000000;
+    --tmobile-dark-gray: #333333;  /* Darkened for better contrast */
+    --tmobile-gray: #767676;       /* Adjusted for WCAG AA compliance */
+    --tmobile-light-gray: #F2F2F2;
+    --tmobile-white: #FFFFFF;
+    
+    /* Light mode with improved contrast */
+    --primary-color: var(--tmobile-magenta);
+    --secondary-color: var(--tmobile-dark-magenta);
+    --accent-color: var(--tmobile-light-magenta);
+    --background-color: var(--tmobile-white);
+    --text-color: var(--tmobile-black);
+    --header-bg: var(--tmobile-light-gray);
+    --button-hover: var(--tmobile-dark-magenta);
+    --card-bg: var(--tmobile-white);
+    --card-border: var(--tmobile-gray);
+    --link-color: var(--tmobile-dark-magenta); /* Added for better link contrast */
 }
 
-/* Dark theme variables */
+/* Dark theme variables with improved contrast */
 html[data-theme='dark'] {
     --bg-color: #121212;
-    --text-color: #e0e0e0;
-    --heading-color: #f0f0f0;
+    --text-color: #f0f0f0;         /* Lighter text for better contrast */
+    --heading-color: #ffffff;       /* Pure white headings for maximum contrast */
     --header-bg: #1f1f1f;
     --header-text: #ffffff;
     --accent-color: #ff79b0;
     --section-bg: #1a1a1a;
     --card-bg: #2a2a2a;
     --card-shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* Dark mode with improved contrast */
+.dark-mode {
+    --primary-color: #FF5CAF;      /* Brightened for better visibility in dark mode */
+    --secondary-color: var(--tmobile-magenta);
+    --accent-color: var(--tmobile-magenta);
+    --background-color: #121212;   /* Using darker black for better contrast with text */
+    --text-color: #ffffff;         /* Pure white text for maximum readability */
+    --header-bg: var(--tmobile-black);
+    --button-hover: var(--tmobile-magenta);
+    --card-bg: #1E1E1E;           /* Slightly lighter than background for distinction */
+    --card-border: #555555;       /* Lighter border for better visibility */
+    --link-color: #FF8DC1;        /* Lighter link color for dark backgrounds */
 }
 
 /* System preference detection - as fallback */
@@ -46,7 +82,7 @@ body {
     padding: 0;
     line-height: 1.6;
     color: var(--text-color);
-    background-color: var(--bg-color);
+    background-color: var(--background-color);
     transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
@@ -55,31 +91,25 @@ header {
     top: 0;
     z-index: 1000;
     background: var(--header-bg);
-    color: var(--header-text);
-    padding: 1rem 0;
-    text-align: center;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     box-shadow: 0 2px 5px var(--card-shadow);
     transition: background var(--transition-speed);
 }
 
-h1, h2 {
-    font-family: 'Montserrat', sans-serif;
-    color: var(--heading-color);
-    transition: color var(--transition-speed);
-}
-
-p {
-    font-size: 1rem;
-    margin: 0.5rem 0;
+nav {
+    display: flex;
+    align-items: center;
 }
 
 nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 nav ul li {
@@ -87,14 +117,31 @@ nav ul li {
 }
 
 nav ul li a {
-    color: var(--header-text);
+    color: var(--text-color);
     text-decoration: none;
-    font-weight: bold;
-    transition: color var(--transition-speed);
+    font-weight: 600;
+    transition: color 0.3s;
+    padding: 0.5rem 0;
+    position: relative;
+}
+
+nav ul li a:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover:after {
+    width: 100%;
 }
 
 nav ul li a:hover {
-    color: var(--accent-color);
+    color: var(--primary-color);
 }
 
 nav ul li a.active {
@@ -103,44 +150,198 @@ nav ul li a.active {
     padding-bottom: 3px;
 }
 
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    margin-right: 0;
+    margin-left: auto;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+.theme-toggle:focus {
+    outline: none;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
 section {
     padding: 2rem;
     margin: 1rem 0;
-    background-color: var(--section-bg);
+    background-color: var(--card-bg);
     border-radius: 8px;
     box-shadow: 0 4px 6px var(--card-shadow);
     transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
     animation: fadeIn 0.8s ease-in-out;
 }
 
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-color);
+    transition: color var(--transition-speed);
+}
+
+h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+}
+
+h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+
+ul {
+    padding-left: 1.5rem;
+}
+
+ul li {
+    margin-bottom: 0.8rem;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 2rem;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+a.cta-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    transition: background-color 0.3s, transform 0.3s;
+    /* Ensure buttons always have good contrast */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+a.cta-button:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-3px);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.team-member {
+    background: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px var(--card-shadow);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    padding: 1.5rem;
+    border: 1px solid var(--card-border);
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.team-member img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.team-member-info {
+    padding: 1.5rem;
+}
+
+.team-member-info h3 {
+    margin-top: 0;
+    color: var(--heading-color);
+}
+
+/* Enhance role styling */
+.role {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.team-member-info .role {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+/* Increase LinkedIn icon size */
+.linkedin-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.linkedin-link:hover {
+    text-decoration: underline;
+}
+
+.linkedin-icon {
+    width: 32px;
+    height: 32px;
+    fill: var(--primary-color);
+    transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+.linkedin-icon:hover {
+    transform: scale(1.15);
+    fill: var(--tmobile-dark-magenta);
+}
+
 footer {
     text-align: center;
-    padding: 1rem;
-    background: var(--header-bg);
+    padding: 2rem;
+    background-color: var(--header-bg);
+    margin-top: 3rem;
     color: var(--header-text);
     transition: background var(--transition-speed);
-}
-
-/* Theme toggle styles */
-.theme-toggle {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-    color: var(--header-text);
-    transition: transform var(--transition-speed);
-    z-index: 1001;
-}
-
-.theme-toggle:hover {
-    transform: rotate(20deg);
-}
-
-.theme-toggle:focus {
-    outline: none;
 }
 
 /* Animation keyframes */
@@ -155,7 +356,7 @@ footer {
     100% { transform: scale(1); }
 }
 
-/* Feature list styling */
+/* Feature list styling with improved contrast */
 #features ul {
     list-style: none;
     padding: 0;
@@ -187,81 +388,6 @@ footer {
     line-height: 1.7;
 }
 
-/* Team section */
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.team-member {
-    background: var(--card-bg);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px var(--card-shadow);
-    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-}
-
-.team-member:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px var(--card-shadow);
-}
-
-.team-member img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
-.team-member-info {
-    padding: 1.5rem;
-}
-
-.team-member-info h3 {
-    margin-top: 0;
-    color: var(--heading-color);
-}
-
-.team-member-info .role {
-    color: var(--accent-color);
-    margin-bottom: 1rem;
-}
-
-/* Link styling */
-a.cta-button {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    background-color: var(--accent-color);
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: bold;
-    transition: background-color var(--transition-speed), transform var(--transition-speed);
-    margin-top: 1rem;
-}
-
-a.cta-button:hover {
-    background-color: #e03770;
-    transform: scale(1.05);
-}
-
-/* Animation classes */
-.fade-in-element {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.fade-in-element.animate {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.pulse {
-    animation: pulse 1s ease-in-out;
-}
-
 /* Purpose page styles */
 .purpose-grid {
     display: grid;
@@ -276,6 +402,10 @@ a.cta-button:hover {
     padding: 1.5rem;
     box-shadow: 0 4px 6px var(--card-shadow);
     transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-bottom: 15px;
 }
 
 .purpose-card:hover {
@@ -283,10 +413,70 @@ a.cta-button:hover {
     box-shadow: 0 8px 16px var(--card-shadow);
 }
 
+.purpose-card:hover .team-photo {
+    transform: scale(1.05);
+}
+
 .purpose-card h3 {
     color: var(--accent-color);
-    margin-top: 0;
+    margin-top: 5px;
     margin-bottom: 0.8rem;
+}
+
+.purpose-card p:last-of-type {
+    margin-bottom: 15px;
+}
+
+/* Ensure proper spacing in the purpose card for the new element */
+.purpose-card .linkedin-link {
+    margin-top: auto;
+    padding-top: 12px;
+}
+
+/* LinkedIn SVG icon styling */
+.social-link {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.linkedin-icon {
+    width: 32px;
+    height: 32px;
+    fill: var(--primary-color);
+    transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+.linkedin-icon:hover {
+    transform: scale(1.15);
+    fill: var(--tmobile-dark-magenta);
+}
+
+/* Team photo styling */
+.team-photo-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    background-color: var(--tmobile-light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Create placeholder style */
+.team-photo[src*="placeholder"] {
+    opacity: 0.7;
+    object-fit: contain;
+    padding: 20px;
 }
 
 /* Dive deeper page styles */
@@ -328,6 +518,28 @@ a.cta-button:hover {
 
 /* Responsive design adjustments */
 @media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .theme-toggle {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+    
+    nav {
+        margin-top: 1rem;
+        width: 100%;
+    }
+    
+    nav ul {
+        justify-content: space-around;
+        width: 100%;
+        gap: 0.5rem;
+    }
+    
     .team-grid {
         grid-template-columns: 1fr;
     }
@@ -336,7 +548,15 @@ a.cta-button:hover {
         padding: 1.5rem;
     }
     
-    #about h1 {
-        font-size: 2rem;
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    .team-members {
+        grid-template-columns: 1fr;
     }
 }

@@ -1,64 +1,33 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     console.log('Log Visualizer Studio loaded.');
     
-    // Theme handling
-    const themeToggle = document.getElementById('theme-toggle');
+    // Check for user's preferred color scheme
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
     
-    if (!themeToggle) {
-        console.error('Theme toggle button not found!');
-        return;
-    }
-    
-    // Check for saved theme preference or use system preference
+    // Check if there's a saved theme preference in local storage
     const savedTheme = localStorage.getItem('theme');
     
-    // Set initial theme based on saved preference
-    if (savedTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeToggle.textContent = '☀️';
-    } else if (savedTheme === 'light') {
-        document.documentElement.setAttribute('data-theme', 'light');
-        themeToggle.textContent = '🌙';
+    // Apply the correct theme based on saved preference or system preference
+    if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
+        document.body.classList.add('dark-mode');
+        document.getElementById('theme-toggle').textContent = '☀️';
     } else {
-        // Use system preference if no saved preference
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            themeToggle.textContent = '☀️';
-        } else {
-            document.documentElement.setAttribute('data-theme', 'light');
-            themeToggle.textContent = '🌙';
-        }
+        document.getElementById('theme-toggle').textContent = '🌙';
     }
     
-    // Handle theme toggle click
-    themeToggle.addEventListener('click', function() {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        console.log('Current theme:', currentTheme);
-        
-        if (currentTheme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'light');
+    // Add event listener for theme toggle button
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+        if (document.body.classList.contains('dark-mode')) {
+            document.body.classList.remove('dark-mode');
             localStorage.setItem('theme', 'light');
-            themeToggle.textContent = '🌙';
-            console.log('Switched to light theme');
+            document.getElementById('theme-toggle').textContent = '🌙';
         } else {
-            document.documentElement.setAttribute('data-theme', 'dark');
+            document.body.classList.add('dark-mode');
             localStorage.setItem('theme', 'dark');
-            themeToggle.textContent = '☀️';
-            console.log('Switched to dark theme');
+            document.getElementById('theme-toggle').textContent = '☀️';
         }
     });
-    
-    // Also listen for system preference changes
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        const newTheme = e.matches ? 'dark' : 'light';
-        // Only apply if user hasn't manually set a preference
-        if (!localStorage.getItem('theme')) {
-            document.documentElement.setAttribute('data-theme', newTheme);
-            themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-            console.log('System preference changed to', newTheme);
-        }
-    });
-    
+
     // Set active navigation link
     const currentPage = window.location.pathname.split('/').pop();
     const navLinks = document.querySelectorAll('nav ul li a');
