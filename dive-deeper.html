@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dive Deeper - Log Visualizer Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+        <nav>
+            <ul>
+                <li><a href="index.html#about">Home</a></li>
+                <li><a href="purpose.html">Purpose</a></li>
+                <li><a href="dive-deeper.html">Dive Deeper</a></li>
+                <li><a href="team.html">Team</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="dive-deeper">
+            <h1>Dive Deeper</h1>
+            <p>Go beyond basic visualization with advanced features that bring your log data to life:</p>
+            
+            <div class="feature-showcase">
+                <div class="feature-card">
+                    <h3>Anomaly Detection</h3>
+                    <p>Our intelligent algorithms automatically identify unusual patterns and potential security incidents in your log data, highlighting them for immediate attention.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Role-Based Reporting</h3>
+                    <p>Generate reports tailored to different audiences - technical details for analysts, summarized insights for managers, and strategic overviews for executives.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Interactive Filtering</h3>
+                    <p>Dynamically explore datasets through intuitive filters that let you isolate specific time periods, event types, or source systems with just a few clicks.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Temporal Analysis</h3>
+                    <p>Uncover patterns across different time scales, from minute-by-minute incident tracking to long-term trend analysis for security posture evaluation.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Correlation Engine</h3>
+                    <p>Automatically identify relationships between seemingly unrelated events, helping to trace attack chains and understand complex security incidents.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Full Data Appendix</h3>
+                    <p>Access the complete dataset that feeds into visualizations through an organized appendix, ensuring transparency and supporting detailed investigation.</p>
+                </div>
+            </div>
+            
+            <h2>Technical Implementation</h2>
+            <p>All visualizations are created using Plotly, ensuring maximum interactivity and clarity while maintaining full offline functionality. The reports are delivered as self-contained HTML files with embedded JavaScript and CSS, requiring no external dependencies or internet connectivity.</p>
+            
+            <p>For data teams and developers, the output is designed to be easily extended and integrated into existing workflows:</p>
+            <ul>
+                <li>Clean, modular code structure for customization</li>
+                <li>Separation of visualization logic from data processing</li>
+                <li>Comprehensive documentation for each chart type</li>
+                <li>Support for large datasets through smart aggregation and filtering</li>
+            </ul>
+            
+            <a href="team.html" class="cta-button">Meet Our Team</a>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 SNAIWY Team</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,28 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meet the Team</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#team">Team</a></li>
+                <li><a href="index.html#about">Home</a></li>
+                <li><a href="index.html#purpose">Purpose</a></li>
+                <li><a href="index.html#dive-deeper">Dive Deeper</a></li>
+                <li><a href="team.html">Team</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <section id="team">
             <h1>Meet the Team</h1>
-            <p>Details about the team members will go here.</p>
+            <p>Our talented team brings together expertise in cybersecurity, data visualization, and artificial intelligence to create innovative solutions for log analysis.</p>
+            
+            <div class="team-grid">
+                <!-- Placeholder team members - replace with actual team info -->
+                <div class="team-member">
+                    <div class="team-member-info">
+                        <h3>Team Member 1</h3>
+                        <p class="role">Security Analyst</p>
+                        <p>Specialist in threat detection and log analysis with over 5 years of experience in cybersecurity.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-info">
+                        <h3>Team Member 2</h3>
+                        <p class="role">Data Visualization Expert</p>
+                        <p>Experienced in transforming complex data into clear, actionable visuals using modern techniques.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-info">
+                        <h3>Team Member 3</h3>
+                        <p class="role">AI Developer</p>
+                        <p>Specializes in applying machine learning to identify patterns and anomalies in large datasets.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-info">
+                        <h3>Team Member 4</h3>
+                        <p class="role">UX/UI Designer</p>
+                        <p>Creates intuitive user experiences that make complex data accessible to all skill levels.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="index.html" class="cta-button">Back to Home</a>
         </section>
     </main>
     <footer>
         <p>&copy; 2025 SNAIWY Team</p>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>
