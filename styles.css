@@ -25,6 +25,7 @@
     --primary-color: var(--tmobile-magenta);
     --secondary-color: var(--tmobile-dark-magenta);
     --accent-color: var(--tmobile-light-magenta);
+    --accent-color-hover: var(--tmobile-magenta); /* Add accent color hover state */
     --background-color: var(--tmobile-white);
     --text-color: var(--tmobile-black);
     --header-bg: var(--tmobile-white);
@@ -46,6 +47,7 @@ html[data-theme='dark'], .dark-mode {
     --header-bg: #1f1f1f;
     --header-text: #ffffff;
     --accent-color: #ff79b0;
+    --accent-color-hover: #E20074; /* Add accent color hover state for dark mode */
     --section-bg: #1a1a1a;
     --card-bg: #2a2a2a;
     --card-shadow: rgba(0, 0, 0, 0.3);
@@ -54,8 +56,9 @@ html[data-theme='dark'], .dark-mode {
     
     --primary-color: #FF5CAF;
     --secondary-color: var(--tmobile-magenta);
+    --button-color: #E20074; /* Darker pink for buttons in dark mode */
     --background-color: #121212;
-    --button-hover: var(--tmobile-magenta);
+    --button-hover: #990F5E; /* Darker hover state */
     --card-border: #555555;
     --link-color: #FF8DC1;
 }
@@ -69,11 +72,14 @@ html[data-theme='dark'], .dark-mode {
         --header-bg: #1f1f1f;
         --header-text: #ffffff;
         --accent-color: #ff79b0;
+        --accent-color-hover: #E20074; /* Add accent color hover state for dark mode */
         --section-bg: #1a1a1a;
         --card-bg: #2a2a2a;
         --card-shadow: rgba(0, 0, 0, 0.3);
         --active-nav-bg: #333333;
         --active-nav-border: #ff79b0;
+        --button-color: #E20074; /* Darker pink for buttons in dark mode */
+        --button-hover: #990F5E; /* Darker hover state */
     }
 }
 
@@ -261,7 +267,7 @@ nav ul {
 a.cta-button {
     display: inline-block;
     padding: 0.8rem 1.5rem;
-    background-color: var(--primary-color);
+    background-color: var(--button-color, var(--primary-color)); /* Use button-color if defined, otherwise fallback to primary-color */
     color: white;
     text-decoration: none;
     border-radius: 4px;
@@ -538,7 +544,7 @@ footer {
     padding: 1rem;
     border-radius: 8px;
     background-color: var(--card-bg);
-    box-shadow: var(--card-shadow);
+    box-shadow: 0 2px 5px var(--card-shadow);
 }
 
 .gpt-instructions summary {
@@ -546,13 +552,13 @@ footer {
     cursor: pointer;
     padding: 1rem;
     border-radius: 4px;
-    background-color: var(--accent-color);
-    color: var(--bg-color);
+    background-color: var(--button-color, var(--primary-color)); /* Use button-color if defined */
+    color: white;
     transition: background-color 0.3s;
 }
 
 .gpt-instructions summary:hover {
-    background-color: var(--accent-color-hover);
+    background-color: var(--button-hover);
 }
 
 .gpt-instructions-content {
