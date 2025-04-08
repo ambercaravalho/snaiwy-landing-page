@@ -5,7 +5,7 @@
 
 A responsive landing page showcasing SNAIWY (Skynet AI'm Watching You) team's Log Visualizer Studio project for the T-Mobile 2025 Cyber AI Create-A-Thon.
 
-![SNAIWY Preview](images/preview.png)
+![SNAIWY Preview](images/preview.gif)
 
 ## 📋 Overview
 
