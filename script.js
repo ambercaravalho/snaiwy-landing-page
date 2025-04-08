@@ -83,4 +83,53 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1000);
         }, 3000);
     });
+
+    // Mobile menu functionality
+    // First, add the mobile menu toggle button dynamically if screen width is small
+    if (window.innerWidth <= 360) {
+        const headerContainer = document.querySelector('.header-container');
+        if (headerContainer) {
+            // Create and insert the mobile menu toggle button
+            const mobileMenuToggle = document.createElement('button');
+            mobileMenuToggle.className = 'mobile-menu-toggle';
+            mobileMenuToggle.setAttribute('aria-label', 'Toggle mobile menu');
+            mobileMenuToggle.innerHTML = '☰';
+            headerContainer.insertBefore(mobileMenuToggle, headerContainer.firstChild);
+            
+            // Add toggle functionality
+            mobileMenuToggle.addEventListener('click', function() {
+                const nav = document.querySelector('nav');
+                nav.classList.toggle('mobile-open');
+                mobileMenuToggle.innerHTML = nav.classList.contains('mobile-open') ? '✕' : '☰';
+            });
+        }
+    }
+    
+    // Handle window resize events
+    window.addEventListener('resize', function() {
+        const nav = document.querySelector('nav');
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        
+        if (window.innerWidth > 360) {
+            // Remove mobile-specific classes and elements on larger screens
+            if (nav) nav.classList.remove('mobile-open');
+            if (mobileMenuToggle) mobileMenuToggle.remove();
+        } else if (!mobileMenuToggle) {
+            // Re-add mobile menu toggle if screen becomes small again
+            const headerContainer = document.querySelector('.header-container');
+            if (headerContainer) {
+                const newMobileMenuToggle = document.createElement('button');
+                newMobileMenuToggle.className = 'mobile-menu-toggle';
+                newMobileMenuToggle.setAttribute('aria-label', 'Toggle mobile menu');
+                newMobileMenuToggle.innerHTML = '☰';
+                headerContainer.insertBefore(newMobileMenuToggle, headerContainer.firstChild);
+                
+                newMobileMenuToggle.addEventListener('click', function() {
+                    const nav = document.querySelector('nav');
+                    nav.classList.toggle('mobile-open');
+                    newMobileMenuToggle.innerHTML = nav.classList.contains('mobile-open') ? '✕' : '☰';
+                });
+            }
+        }
+    });
 });
