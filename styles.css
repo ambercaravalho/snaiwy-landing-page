@@ -205,6 +205,78 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 200; /* Ensure toggle stays on top */
+}
+
+/* Mobile menu button for hamburger (hide it by default) */
+.mobile-menu-button {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--header-text);
+    padding: 0;
+    margin-right: 15px;
+    transition: transform 0.3s;
+    z-index: 200; /* Ensure button stays on top */
+}
+
+.mobile-menu-button:hover {
+    transform: scale(1.1);
+}
+
+.mobile-menu-button:focus {
+    outline: none;
+}
+
+/* Hamburger icon */
+.hamburger-icon {
+    display: block;
+    position: relative;
+    width: 24px;
+    height: 24px;
+}
+
+.hamburger-icon span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: var(--header-text);
+    border-radius: 3px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+
+.hamburger-icon span:nth-child(1) {
+    top: 0px;
+}
+
+.hamburger-icon span:nth-child(2) {
+    top: 10px;
+}
+
+.hamburger-icon span:nth-child(3) {
+    top: 20px;
+}
+
+/* Animation for hamburger to X */
+.mobile-menu-open .hamburger-icon span:nth-child(1) {
+    top: 10px;
+    transform: rotate(135deg);
+}
+
+.mobile-menu-open .hamburger-icon span:nth-child(2) {
+    opacity: 0;
+    left: -60px;
+}
+
+.mobile-menu-open .hamburger-icon span:nth-child(3) {
+    top: 10px;
+    transform: rotate(-135deg);
 }
 
 main {
@@ -577,43 +649,89 @@ footer {
 /* Responsive design adjustments */
 @media (max-width: 768px) {
     .header-container {
-        flex-direction: column;
-        height: auto;
-        padding: 10px 20px;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 60px;
+        padding: 0 20px;
+        position: relative;
     }
     
     .site-title {
-        margin: 0 0 10px 0;
+        margin: 0;
         justify-content: center;
+        text-align: center;
+        flex-grow: 1;
     }
     
-    .main-nav {
-        width: 100%;
-    }
-    
-    .main-nav ul {
-        flex-wrap: wrap;
+    .mobile-menu-button {
+        display: flex;
+        align-items: center;
         justify-content: center;
-        gap: 5px;
-        margin-bottom: 10px;
-    }
-    
-    .main-nav ul li {
-        margin: 0 5px;
-    }
-    
-    .main-nav ul li a {
-        padding: 8px 10px;
-        font-size: 0.9rem;
+        order: -1; /* Place button at the beginning */
     }
     
     .theme-toggle {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        margin: 0;
+        order: 2; /* Place toggle at the end */
+        margin-left: 15px;
+        position: relative;
     }
     
+    .main-nav {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        background-color: var(--header-bg);
+        transition: height 0.3s ease;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        z-index: 100;
+    }
+    
+    .main-nav.mobile-open {
+        height: auto;
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
+    }
+    
+    .main-nav ul {
+        flex-direction: column;
+        width: 100%;
+        padding: 10px 0;
+    }
+    
+    .main-nav ul li {
+        width: 100%;
+        margin: 0;
+        height: auto;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .main-nav ul li:last-child {
+        border-bottom: none;
+    }
+    
+    .main-nav ul li a {
+        padding: 15px 20px;
+        width: 100%;
+        justify-content: center;
+        font-size: 1rem;
+    }
+    
+    .main-nav ul li a.active::after {
+        bottom: 0;
+        height: 3px;
+        width: 40%;
+        left: 30%;
+    }
+    
+    /* Remove mobile-menu-toggle styles since we're using mobile-menu-button */
+    .mobile-menu-toggle {
+        display: none !important;
+    }
+    
+    /* Reset duplicate styles */
     .team-grid {
         grid-template-columns: 1fr;
     }
@@ -629,130 +747,41 @@ footer {
     h2 {
         font-size: 1.8rem;
     }
-    
-    .team-members {
-        grid-template-columns: 1fr;
-    }
-
-    .header-container {
-        flex-direction: column;
-        height: auto;
-        padding: 10px 20px;
-    }
-    
-    .site-title {
-        margin: 0 0 10px 0;
-        justify-content: center;
-    }
-    
-    .main-nav {
-        width: 100%;
-    }
-    
-    .main-nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 5px;
-        margin-bottom: 10px;
-    }
-    
-    .main-nav ul li {
-        margin: 0 5px;
-    }
-    
-    .main-nav ul li a {
-        padding: 8px 10px;
-        font-size: 0.9rem;
-    }
-    
-    .theme-toggle {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        margin: 0;
-    }
 }
 
-/* Additional mobile optimization for very small screens */
+/* Adjust the additional mobile optimization for very small screens */
 @media (max-width: 480px) {
     .header-container {
-        padding: 10px;
+        padding: 0 10px;
     }
     
     .site-title {
         font-size: 1.25rem;
-        margin-top: 20px;
-    }
-    
-    .main-nav ul {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 2px;
-    }
-    
-    .main-nav ul li {
-        margin: 0 2px;
-        width: calc(50% - 4px);
     }
     
     .main-nav ul li a {
-        padding: 6px 8px;
-        font-size: 0.85rem;
-        text-align: center;
-        width: 100%;
-        justify-content: center;
+        padding: 12px 15px;
+        font-size: 0.95rem;
     }
 }
 
-/* Hamburger menu for very small screens */
+/* Remove or update this section since we need to change the mobile menu logic */
 @media (max-width: 360px) {
     .header-container {
-        position: relative;
-    }
-
-    .mobile-menu-toggle {
-        display: block;
-        position: absolute;
-        left: 10px;
-        top: 10px;
-        z-index: 200;
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        color: var(--header-text);
-        cursor: pointer;
+        padding: 0 10px;
     }
     
     .site-title {
-        width: 100%;
-        text-align: center;
+        font-size: 1.1rem;
     }
     
-    .main-nav {
-        width: 100%;
-        height: 0;
-        overflow: hidden;
-        transition: height 0.3s ease;
+    .theme-toggle {
+        padding: 0.3rem;
+        font-size: 1.3rem;
     }
     
-    .main-nav.mobile-open {
-        height: auto;
-    }
-    
-    .main-nav ul {
-        flex-direction: column;
-        align-items: center;
-        padding: 0;
-    }
-    
-    .main-nav ul li {
-        width: 100%;
-        margin: 5px 0;
-    }
-    
-    .main-nav ul li a {
-        width: 100%;
-        text-align: center;
-        padding: 10px;
+    /* Remove existing mobile toggle since we're replacing it */
+    .mobile-menu-toggle {
+        display: none !important;
     }
 }

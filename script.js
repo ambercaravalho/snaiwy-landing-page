@@ -7,30 +7,39 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check if there's a saved theme preference in local storage
     const savedTheme = localStorage.getItem('theme');
     
+    // Consolidated theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    
+    // Function to update theme appearance
+    const updateThemeAppearance = (isDarkMode) => {
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+            document.documentElement.setAttribute('data-theme', 'dark');
+            if (themeToggle) themeToggle.textContent = '☀️';
+        } else {
+            document.body.classList.remove('dark-mode');
+            document.documentElement.setAttribute('data-theme', 'light');
+            if (themeToggle) themeToggle.textContent = '🌙';
+        }
+    };
+    
     // Apply the correct theme based on saved preference or system preference
     if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
-        document.body.classList.add('dark-mode');
-        document.documentElement.setAttribute('data-theme', 'dark'); // Add attribute to HTML element
-        document.getElementById('theme-toggle').textContent = '☀️';
+        updateThemeAppearance(true);
     } else {
-        document.documentElement.setAttribute('data-theme', 'light'); // Explicitly set light mode
-        document.getElementById('theme-toggle').textContent = '🌙';
+        updateThemeAppearance(false);
     }
     
     // Add event listener for theme toggle button
-    document.getElementById('theme-toggle').addEventListener('click', () => {
-        if (document.body.classList.contains('dark-mode')) {
-            document.body.classList.remove('dark-mode');
-            document.documentElement.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-            document.getElementById('theme-toggle').textContent = '🌙';
-        } else {
-            document.body.classList.add('dark-mode');
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-            document.getElementById('theme-toggle').textContent = '☀️';
-        }
-    });
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
+            const newMode = !isDarkMode;
+            
+            updateThemeAppearance(newMode);
+            localStorage.setItem('theme', newMode ? 'dark' : 'light');
+        });
+    }
 
     // Set active navigation link
     const currentPage = window.location.pathname.split('/').pop();
@@ -88,52 +97,64 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     });
 
-    // Mobile menu functionality
-    // First, add the mobile menu toggle button dynamically if screen width is small
-    if (window.innerWidth <= 360) {
-        const headerContainer = document.querySelector('.header-container');
-        if (headerContainer) {
-            // Create and insert the mobile menu toggle button
-            const mobileMenuToggle = document.createElement('button');
-            mobileMenuToggle.className = 'mobile-menu-toggle';
-            mobileMenuToggle.setAttribute('aria-label', 'Toggle mobile menu');
-            mobileMenuToggle.innerHTML = '☰';
-            headerContainer.insertBefore(mobileMenuToggle, headerContainer.firstChild);
+    // Add hamburger menu button if it doesn't exist
+    const headerContainer = document.querySelector('.header-container');
+    if (headerContainer && !document.querySelector('.mobile-menu-button')) {
+        // Create mobile menu button with hamburger icon
+        const mobileMenuButton = document.createElement('button');
+        mobileMenuButton.className = 'mobile-menu-button';
+        mobileMenuButton.setAttribute('aria-label', 'Toggle mobile menu');
+        mobileMenuButton.innerHTML = `
+            <div class="hamburger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        `;
+        
+        // Insert at the beginning of the header
+        headerContainer.insertBefore(mobileMenuButton, headerContainer.firstChild);
+        
+        // Get main navigation
+        const mainNav = document.querySelector('.main-nav') || document.querySelector('nav');
+        
+        if (mainNav) {
+            // Make sure it has the right class
+            if (!mainNav.classList.contains('main-nav')) {
+                mainNav.classList.add('main-nav');
+            }
             
-            // Add toggle functionality
-            mobileMenuToggle.addEventListener('click', function() {
-                const nav = document.querySelector('nav');
-                nav.classList.toggle('mobile-open');
-                mobileMenuToggle.innerHTML = nav.classList.contains('mobile-open') ? '✕' : '☰';
+            // Toggle menu on button click
+            mobileMenuButton.addEventListener('click', function() {
+                mainNav.classList.toggle('mobile-open');
+                mobileMenuButton.classList.toggle('mobile-menu-open');
+            });
+            
+            // Close menu when clicking on a link
+            const navLinks = mainNav.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mainNav.classList.remove('mobile-open');
+                    mobileMenuButton.classList.remove('mobile-menu-open');
+                });
             });
         }
     }
+
+    // Remove the existing mobile menu toggle code
+    window.removeEventListener('resize', function() {
+        // Old resize handler
+    });
     
-    // Handle window resize events
+    // New resize handler
     window.addEventListener('resize', function() {
-        const nav = document.querySelector('nav');
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mainNav = document.querySelector('.main-nav') || document.querySelector('nav');
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
         
-        if (window.innerWidth > 360) {
-            // Remove mobile-specific classes and elements on larger screens
-            if (nav) nav.classList.remove('mobile-open');
-            if (mobileMenuToggle) mobileMenuToggle.remove();
-        } else if (!mobileMenuToggle) {
-            // Re-add mobile menu toggle if screen becomes small again
-            const headerContainer = document.querySelector('.header-container');
-            if (headerContainer) {
-                const newMobileMenuToggle = document.createElement('button');
-                newMobileMenuToggle.className = 'mobile-menu-toggle';
-                newMobileMenuToggle.setAttribute('aria-label', 'Toggle mobile menu');
-                newMobileMenuToggle.innerHTML = '☰';
-                headerContainer.insertBefore(newMobileMenuToggle, headerContainer.firstChild);
-                
-                newMobileMenuToggle.addEventListener('click', function() {
-                    const nav = document.querySelector('nav');
-                    nav.classList.toggle('mobile-open');
-                    newMobileMenuToggle.innerHTML = nav.classList.contains('mobile-open') ? '✕' : '☰';
-                });
-            }
+        // If window is resized larger than mobile breakpoint, close the mobile menu
+        if (window.innerWidth > 768 && mainNav && mobileMenuButton) {
+            mainNav.classList.remove('mobile-open');
+            mobileMenuButton.classList.remove('mobile-menu-open');
         }
     });
 });
