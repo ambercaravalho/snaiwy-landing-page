@@ -588,6 +588,13 @@ footer {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* For medium and larger screens, limit image width */
+@media (min-width: 768px) {
+    .preview-image {
+        max-width: 60%;
+    }
+}
+
 /* Dive deeper page styles */
 .feature-showcase {
     display: grid;
