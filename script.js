@@ -10,8 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Apply the correct theme based on saved preference or system preference
     if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
         document.body.classList.add('dark-mode');
+        document.documentElement.setAttribute('data-theme', 'dark'); // Add attribute to HTML element
         document.getElementById('theme-toggle').textContent = '☀️';
     } else {
+        document.documentElement.setAttribute('data-theme', 'light'); // Explicitly set light mode
         document.getElementById('theme-toggle').textContent = '🌙';
     }
     
@@ -19,10 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('theme-toggle').addEventListener('click', () => {
         if (document.body.classList.contains('dark-mode')) {
             document.body.classList.remove('dark-mode');
+            document.documentElement.setAttribute('data-theme', 'light');
             localStorage.setItem('theme', 'light');
             document.getElementById('theme-toggle').textContent = '🌙';
         } else {
             document.body.classList.add('dark-mode');
+            document.documentElement.setAttribute('data-theme', 'dark');
             localStorage.setItem('theme', 'dark');
             document.getElementById('theme-toggle').textContent = '☀️';
         }

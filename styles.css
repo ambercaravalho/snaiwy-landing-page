@@ -27,7 +27,9 @@
     --accent-color: var(--tmobile-light-magenta);
     --background-color: var(--tmobile-white);
     --text-color: var(--tmobile-black);
-    --header-bg: var(--tmobile-light-gray);
+    --header-bg: var(--tmobile-white);
+    --header-text: var(--tmobile-black);
+    --section-bg: var(--tmobile-light-gray);
     --button-hover: var(--tmobile-dark-magenta);
     --card-bg: var(--tmobile-white);
     --card-border: var(--tmobile-gray);
@@ -37,7 +39,7 @@
 }
 
 /* Dark theme variables */
-html[data-theme='dark'] {
+html[data-theme='dark'], .dark-mode {
     --bg-color: #121212;
     --text-color: #f0f0f0;
     --heading-color: #ffffff;
@@ -49,22 +51,13 @@ html[data-theme='dark'] {
     --card-shadow: rgba(0, 0, 0, 0.3);
     --active-nav-bg: #333333;
     --active-nav-border: #ff79b0;
-}
-
-/* Dark mode */
-.dark-mode {
+    
     --primary-color: #FF5CAF;
     --secondary-color: var(--tmobile-magenta);
-    --accent-color: var(--tmobile-magenta);
     --background-color: #121212;
-    --text-color: #ffffff;
-    --header-bg: var(--tmobile-black);
     --button-hover: var(--tmobile-magenta);
-    --card-bg: #1E1E1E;
     --card-border: #555555;
     --link-color: #FF8DC1;
-    --active-nav-bg: #333333;
-    --active-nav-border: #FF5CAF;
 }
 
 /* System preference detection - as fallback */
@@ -84,6 +77,12 @@ html[data-theme='dark'] {
     }
 }
 
+html, body {
+    transition: background-color var(--transition-speed), 
+                color var(--transition-speed),
+                border-color var(--transition-speed);
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -100,13 +99,14 @@ header {
     justify-content: center;
     align-items: center;
     padding: 1rem 0;
-    background-color: var(--bg-color);
+    background-color: var(--header-bg);
+    color: var(--header-text);
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
     z-index: 100;
     width: 100%;
-    transition: background-color var(--transition-speed);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
 .header-container {
@@ -124,7 +124,7 @@ header {
     font-size: 1.5rem;
     font-weight: 600;
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--header-text);
     margin-right: auto;
     display: flex;
     align-items: center;
@@ -158,7 +158,7 @@ header {
 .main-nav ul li a {
     display: flex;
     align-items: center;
-    color: var(--text-color);
+    color: var(--header-text);
     text-decoration: none;
     font-weight: 600;
     transition: color var(--transition-speed);
@@ -193,7 +193,7 @@ header {
     font-size: 1.5rem;
     padding: 0.5rem;
     border-radius: 50%;
-    color: var(--text-color);
+    color: var(--header-text);
     transition: transform 0.3s;
     margin-left: 20px;
     display: flex;
@@ -210,7 +210,7 @@ main {
 section {
     padding: 2rem;
     margin: 1rem 0;
-    background-color: var(--card-bg);
+    background-color: var(--section-bg);
     border-radius: 8px;
     box-shadow: 0 4px 6px var(--card-shadow);
     transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
@@ -268,7 +268,6 @@ a.cta-button {
     font-weight: bold;
     margin-top: 1.5rem;
     transition: background-color 0.3s, transform 0.3s;
-    /* Ensure buttons always have good contrast */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -358,7 +357,7 @@ footer {
     background-color: var(--header-bg);
     margin-top: 3rem;
     color: var(--header-text);
-    transition: background var(--transition-speed);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
 /* Animation keyframes */
@@ -533,6 +532,42 @@ footer {
     margin-bottom: 0.5rem;
 }
 
+/* Add the GPT instructions collapsible section styles */
+.gpt-instructions {
+    margin: 2rem 0;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: var(--card-bg);
+    box-shadow: var(--card-shadow);
+}
+
+.gpt-instructions summary {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 1rem;
+    border-radius: 4px;
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    transition: background-color 0.3s;
+}
+
+.gpt-instructions summary:hover {
+    background-color: var(--accent-color-hover);
+}
+
+.gpt-instructions-content {
+    padding: 1rem;
+}
+
+.gpt-instructions-content h2 {
+    margin-top: 1rem;
+}
+
+.gpt-instructions-content ul {
+    list-style-type: disc;
+    margin-left: 2rem;
+}
+
 /* Responsive design adjustments */
 @media (max-width: 768px) {
     .header-container {
@@ -678,7 +713,7 @@ footer {
         background: none;
         border: none;
         font-size: 1.5rem;
-        color: var(--text-color);
+        color: var(--header-text);
         cursor: pointer;
     }
     
