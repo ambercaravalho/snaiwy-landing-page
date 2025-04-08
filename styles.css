@@ -11,17 +11,17 @@
     --card-shadow: rgba(0, 0, 0, 0.1);
     --transition-speed: 0.3s;
 
-    /* T-Mobile color palette with improved contrast */
+    /* T-Mobile color palette */
     --tmobile-magenta: #E20074;
     --tmobile-dark-magenta: #990F5E;
     --tmobile-light-magenta: #FF38A8;
     --tmobile-black: #000000;
-    --tmobile-dark-gray: #333333;  /* Darkened for better contrast */
-    --tmobile-gray: #767676;       /* Adjusted for WCAG AA compliance */
+    --tmobile-dark-gray: #333333;
+    --tmobile-gray: #767676;
     --tmobile-light-gray: #F2F2F2;
     --tmobile-white: #FFFFFF;
     
-    /* Light mode with improved contrast */
+    /* Light mode */
     --primary-color: var(--tmobile-magenta);
     --secondary-color: var(--tmobile-dark-magenta);
     --accent-color: var(--tmobile-light-magenta);
@@ -31,40 +31,40 @@
     --button-hover: var(--tmobile-dark-magenta);
     --card-bg: var(--tmobile-white);
     --card-border: var(--tmobile-gray);
-    --link-color: var(--tmobile-dark-magenta); /* Added for better link contrast */
-    --active-nav-bg: #f0f0f0;      /* Light background for active navigation items */
-    --active-nav-border: var(--tmobile-magenta); /* T-Mobile magenta for active navigation border */
+    --link-color: var(--tmobile-dark-magenta);
+    --active-nav-bg: #f0f0f0;
+    --active-nav-border: var(--tmobile-magenta);
 }
 
-/* Dark theme variables with improved contrast */
+/* Dark theme variables */
 html[data-theme='dark'] {
     --bg-color: #121212;
-    --text-color: #f0f0f0;         /* Lighter text for better contrast */
-    --heading-color: #ffffff;       /* Pure white headings for maximum contrast */
+    --text-color: #f0f0f0;
+    --heading-color: #ffffff;
     --header-bg: #1f1f1f;
     --header-text: #ffffff;
     --accent-color: #ff79b0;
     --section-bg: #1a1a1a;
     --card-bg: #2a2a2a;
     --card-shadow: rgba(0, 0, 0, 0.3);
-    --active-nav-bg: #333333;      /* Dark background for active navigation items */
-    --active-nav-border: #ff79b0;  /* Accent color for active navigation border */
+    --active-nav-bg: #333333;
+    --active-nav-border: #ff79b0;
 }
 
-/* Dark mode with improved contrast */
+/* Dark mode */
 .dark-mode {
-    --primary-color: #FF5CAF;      /* Brightened for better visibility in dark mode */
+    --primary-color: #FF5CAF;
     --secondary-color: var(--tmobile-magenta);
     --accent-color: var(--tmobile-magenta);
-    --background-color: #121212;   /* Using darker black for better contrast with text */
-    --text-color: #ffffff;         /* Pure white text for maximum readability */
+    --background-color: #121212;
+    --text-color: #ffffff;
     --header-bg: var(--tmobile-black);
     --button-hover: var(--tmobile-magenta);
-    --card-bg: #1E1E1E;           /* Slightly lighter than background for distinction */
-    --card-border: #555555;       /* Lighter border for better visibility */
-    --link-color: #FF8DC1;        /* Lighter link color for dark backgrounds */
-    --active-nav-bg: #333333;      /* Dark background for active navigation items */
-    --active-nav-border: #FF5CAF;  /* Accent color for active navigation border */
+    --card-bg: #1E1E1E;
+    --card-border: #555555;
+    --link-color: #FF8DC1;
+    --active-nav-bg: #333333;
+    --active-nav-border: #FF5CAF;
 }
 
 /* System preference detection - as fallback */
