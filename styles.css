@@ -39,6 +39,11 @@
     --active-nav-border: var(--tmobile-magenta);
 }
 
+/* Prevent flash of unstyled content during theme load */
+.preload * {
+    transition: none !important;
+}
+
 /* Dark theme variables */
 html[data-theme='dark'], .dark-mode {
     --bg-color: #121212;

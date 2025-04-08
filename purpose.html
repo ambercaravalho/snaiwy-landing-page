@@ -4,6 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Purpose - SNAIWY</title>
+    <!-- Add theme initialization script to prevent flash -->
+    <script>
+        // Immediately apply saved theme to prevent flash
+        document.documentElement.classList.add('preload');
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.documentElement.classList.add('dark-mode');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.documentElement.classList.remove('dark-mode');
+        }
+        
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.documentElement.classList.remove('preload');
+            }, 100);
+        });
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
