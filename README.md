@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-success)](https://amberiscoding.github.io/snaiwy-landing-page/)
 
-A responsive landing page showcasing SNAIWY (Skynet AI'm Watching You) team's Log Visualizer Studio project for the 2025 Cyber AI Create-A-Thon.
+A responsive landing page showcasing SNAIWY (Skynet AI'm Watching You) team's Log Visualizer Studio project for a 2025 Cyber AI Create-A-Thon.
 
 ![SNAIWY Preview](images/preview.gif)
 
@@ -28,7 +28,7 @@ Visit our live demo: [SNAIWY Landing Page](https://ambercaravalho.github.io/snai
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/AmberIsCoding/snaiwy-landing-page.git
+   git clone https://github.com/ambercaravalho/snaiwy-landing-page.git
    cd snaiwy-landing-page
    ```
 
