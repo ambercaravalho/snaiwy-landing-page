@@ -11,32 +11,32 @@
     --card-shadow: rgba(0, 0, 0, 0.1);
     --transition-speed: 0.3s;
 
-    /* T-Mobile color palette */
-    --tmobile-magenta: #E20074;
-    --tmobile-dark-magenta: #990F5E;
-    --tmobile-light-magenta: #FF38A8;
-    --tmobile-black: #000000;
-    --tmobile-dark-gray: #333333;
-    --tmobile-gray: #767676;
-    --tmobile-light-gray: #F2F2F2;
-    --tmobile-white: #FFFFFF;
+    /* Pink color palette */
+    --pink-magenta: #E20074;
+    --pink-dark-magenta: #990F5E;
+    --pink-light-magenta: #FF38A8;
+    --pink-black: #000000;
+    --pink-dark-gray: #333333;
+    --pink-gray: #767676;
+    --pink-light-gray: #F2F2F2;
+    --pink-white: #FFFFFF;
     
     /* Light mode */
-    --primary-color: var(--tmobile-magenta);
-    --secondary-color: var(--tmobile-dark-magenta);
-    --accent-color: var(--tmobile-light-magenta);
-    --accent-color-hover: var(--tmobile-magenta); /* Add accent color hover state */
-    --background-color: var(--tmobile-white);
-    --text-color: var(--tmobile-black);
-    --header-bg: var(--tmobile-white);
-    --header-text: var(--tmobile-black);
-    --section-bg: var(--tmobile-light-gray);
-    --button-hover: var(--tmobile-dark-magenta);
-    --card-bg: var(--tmobile-white);
-    --card-border: var(--tmobile-gray);
-    --link-color: var(--tmobile-dark-magenta);
+    --primary-color: var(--pink-magenta);
+    --secondary-color: var(--pink-dark-magenta);
+    --accent-color: var(--pink-light-magenta);
+    --accent-color-hover: var(--pink-magenta);
+    --background-color: var(--pink-white);
+    --text-color: var(--pink-black);
+    --header-bg: var(--pink-white);
+    --header-text: var(--pink-black);
+    --section-bg: var(--pink-light-gray);
+    --button-hover: var(--pink-dark-magenta);
+    --card-bg: var(--pink-white);
+    --card-border: var(--pink-gray);
+    --link-color: var(--pink-dark-magenta);
     --active-nav-bg: #f0f0f0;
-    --active-nav-border: var(--tmobile-magenta);
+    --active-nav-border: var(--pink-magenta);
 }
 
 /* Prevent flash of unstyled content during theme load */
@@ -52,7 +52,7 @@ html[data-theme='dark'], .dark-mode {
     --header-bg: #1f1f1f;
     --header-text: #ffffff;
     --accent-color: #ff79b0;
-    --accent-color-hover: #E20074; /* Add accent color hover state for dark mode */
+    --accent-color-hover: #E20074;
     --section-bg: #1a1a1a;
     --card-bg: #2a2a2a;
     --card-shadow: rgba(0, 0, 0, 0.3);
@@ -60,10 +60,10 @@ html[data-theme='dark'], .dark-mode {
     --active-nav-border: #ff79b0;
     
     --primary-color: #FF5CAF;
-    --secondary-color: var(--tmobile-magenta);
-    --button-color: #E20074; /* Darker pink for buttons in dark mode */
+    --secondary-color: var(--pink-magenta);
+    --button-color: #E20074;
     --background-color: #121212;
-    --button-hover: #990F5E; /* Darker hover state */
+    --button-hover: #990F5E;
     --card-border: #555555;
     --link-color: #FF8DC1;
 }
@@ -77,14 +77,14 @@ html[data-theme='dark'], .dark-mode {
         --header-bg: #1f1f1f;
         --header-text: #ffffff;
         --accent-color: #ff79b0;
-        --accent-color-hover: #E20074; /* Add accent color hover state for dark mode */
+        --accent-color-hover: #E20074;
         --section-bg: #1a1a1a;
         --card-bg: #2a2a2a;
         --card-shadow: rgba(0, 0, 0, 0.3);
         --active-nav-bg: #333333;
         --active-nav-border: #ff79b0;
-        --button-color: #E20074; /* Darker pink for buttons in dark mode */
-        --button-hover: #990F5E; /* Darker hover state */
+        --button-color: #E20074;
+        --button-hover: #990F5E;
     }
 }
 
@@ -210,7 +210,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 200; /* Ensure toggle stays on top */
+    z-index: 200;
 }
 
 /* Mobile menu button for hamburger (hide it by default) */
@@ -431,7 +431,7 @@ a.cta-button:hover {
 
 .linkedin-icon:hover {
     transform: scale(1.15);
-    fill: var(--tmobile-dark-magenta);
+    fill: var(--pink-dark-magenta);
 }
 
 footer {
@@ -548,7 +548,7 @@ footer {
 
 .linkedin-icon:hover {
     transform: scale(1.15);
-    fill: var(--tmobile-dark-magenta);
+    fill: var(--pink-dark-magenta);
 }
 
 /* Team photo styling */
@@ -558,7 +558,7 @@ footer {
     overflow: hidden;
     border-radius: 6px;
     margin-bottom: 15px;
-    background-color: var(--tmobile-light-gray);
+    background-color: var(--pink-light-gray);
     display: flex;
     align-items: center;
     justify-content: center;

@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-success)](https://amberiscoding.github.io/snaiwy-landing-page/)
 
-A responsive landing page showcasing SNAIWY (Skynet AI'm Watching You) team's Log Visualizer Studio project for the T-Mobile 2025 Cyber AI Create-A-Thon.
+A responsive landing page showcasing SNAIWY (Skynet AI'm Watching You) team's Log Visualizer Studio project for the 2025 Cyber AI Create-A-Thon.
 
 ![SNAIWY Preview](images/preview.gif)
 
@@ -15,7 +15,7 @@ Log Visualizer Studio is a cutting-edge tool designed to transform raw log data 
 
 - **Responsive Design**: Adapts seamlessly to all device sizes
 - **Dark/Light Mode**: Theme toggle that respects user preferences
-- **Modern UI**: Clean, professional interface with T-Mobile color palette
+- **Modern UI**: Clean, professional interface with pink-ish color palette
 - **Content Sections**: Home, Purpose, Dive Deeper, and Team pages
 - **Animated Elements**: Subtle animations for improved user experience
 - **Mobile-First Approach**: Optimized for mobile experiences
@@ -84,6 +84,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙌 Acknowledgments
 
-- T-Mobile Create-A-Thon for the opportunity
+- The Create-A-Thon for the opportunity
 - The open-source community for inspiration and tools
 - All team members who contributed to this project
